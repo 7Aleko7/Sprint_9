@@ -17,5 +17,5 @@ class Data:
         'weight': '500',
         'time': '3',
         'description': 'Только шоколад',
-        'photo': ROOT_DIR / "торт.jpg"
+        'photo': str(ROOT_DIR / "торт.jpg")
     }
