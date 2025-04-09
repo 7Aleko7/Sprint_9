@@ -1,6 +1,6 @@
 import random
 import string
-from pathlib import Path
+import os
 
 class Data:
     @staticmethod
@@ -9,7 +9,7 @@ class Data:
         random_string = ''.join(random.choice(letters) for i in range(length))
         return random_string
 
-    ROOT_DIR = Path(__file__).resolve().parent.parent
+    photo_path = os.path.join(os.path.dirname(__file__), "торт.jpg")
 
     COOKIE_RECIPE = {
         'name': 'Торт',
@@ -17,5 +17,5 @@ class Data:
         'weight': '500',
         'time': '3',
         'description': 'Только шоколад',
-        'photo': str(ROOT_DIR / "торт.jpg")
+        'photo': str(photo_path)
     }
