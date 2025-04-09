@@ -5,18 +5,19 @@ import random
 import string
 from pages.signup_page import SignupPage
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.chrome.service import Service
+import tempfile
 
 
 @pytest.fixture()
 def driver():
     chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument("--headless")
-    chrome_options.add_argument("--no-sandbox")  # Важно для Docker!
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Важно для Docker!
-    service = Service(ChromeDriverManager().install())
-    driver = webdriver.Chrome(service=service, options=chrome_options)
+    chrome_options.add_argument('--headless=new')
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--disable-dev-shm-usage')
+    chrome_options.add_argument(f'--user-data-dir={tempfile.mkdtemp()}')  # Создаем временный профиль
+
+    # Инициализация драйвера
+    driver = webdriver.Chrome(options=chrome_options)
     yield driver
     driver.quit()
 
