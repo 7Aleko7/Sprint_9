@@ -1,7 +1,6 @@
 import random
 import string
 from pathlib import Path
-import os
 
 class Data:
     @staticmethod
@@ -16,5 +15,5 @@ class Data:
         'weight': '500',
         'time': '3',
         'description': 'Только шоколад',
-        'photo': os.path.join(os.path.dirname(__file__), 'test_data', 'торт.jpg')
+        'photo': str(Path(__file__).parent.parent / 'торт.jpg')
     }
